@@ -1,0 +1,141 @@
+{
+  "id" : "d9fa35fc-cad8-4588-87f7-316b40d8fcf2",
+  "name" : "${broker.name}",
+  "modelVersion" : "7.1",
+  "authenticationproviders" : [ {
+    "id" : "eec07187-3315-4fc4-a8a1-97db794470a2",
+    "name" : "plain",
+    "type" : "Plain",
+    "users" : [ {
+      "id" : "da676211-0c45-4a8b-91b9-0ba1568f8b42",
+      "name" : "guest",
+      "type" : "managed",
+      "password" : "guest"
+    } ]
+  } ],
+  "brokerloggers" : [ {
+    "id" : "cd55056a-27ae-4459-8566-d5d1d2886536",
+    "name" : "logfile",
+    "type" : "File",
+    "fileName" : "${qpid.work_dir}${file.separator}log${file.separator}qpid.log",
+    "brokerloginclusionrules" : [ {
+      "id" : "866437c9-7dba-47ae-9c4c-20f8bda47cf5",
+      "name" : "Operational",
+      "type" : "NameAndLevel",
+      "level" : "INFO",
+      "loggerName" : "qpid.message.*"
+    }, {
+      "id" : "a6f16d76-b674-4cf4-9dc0-bd63697d3598",
+      "name" : "Qpid",
+      "type" : "NameAndLevel",
+      "level" : "INFO",
+      "loggerName" : "org.apache.qpid.*"
+    }, {
+      "id" : "9b90e371-49ab-42cd-83e7-02841ad6a0cd",
+      "name" : "Root",
+      "type" : "NameAndLevel",
+      "level" : "WARN",
+      "loggerName" : "ROOT"
+    }, {
+      "id" : "afb6f15b-40d9-4ae9-9dca-bfd8cca5abc3",
+      "name" : "Statistics",
+      "type" : "NameAndLevel",
+      "level" : "INFO",
+      "loggerName" : "qpid.statistics.*"
+    } ]
+  }, {
+    "id" : "42a5a85f-49be-4cfd-85d6-1a7423d5347f",
+    "name" : "memory",
+    "type" : "Memory",
+    "brokerloginclusionrules" : [ {
+      "id" : "618a01a2-e186-4241-9f87-466db519dadd",
+      "name" : "Operational",
+      "type" : "NameAndLevel",
+      "level" : "INFO",
+      "loggerName" : "qpid.message.*"
+    }, {
+      "id" : "a90fdfa8-763e-4e78-bead-0725a67301a4",
+      "name" : "Qpid",
+      "type" : "NameAndLevel",
+      "level" : "INFO",
+      "loggerName" : "org.apache.qpid.*"
+    }, {
+      "id" : "84d0a338-7e70-4d98-b3f6-77e983a81e23",
+      "name" : "Root",
+      "type" : "NameAndLevel",
+      "level" : "WARN",
+      "loggerName" : "ROOT"
+    }, {
+      "id" : "322261fd-4452-47cc-b768-c5bc7427ce01",
+      "name" : "Statistics",
+      "type" : "NameAndLevel",
+      "level" : "INFO",
+      "loggerName" : "qpid.statistics.*"
+    } ]
+  } ],
+  "plugins" : [ {
+    "id" : "4f17541c-a3fd-4b1d-bf51-0a7bc5794b97",
+    "type" : "MANAGEMENT-HTTP",
+    "name" : "httpManagement"
+  } ],
+  "ports" : [ {
+    "id" : "4cd14879-5527-4d82-b060-c3545ebbdedd",
+    "name" : "AMQP",
+    "port" : "${qpid.amqp_port}",
+    "authenticationProvider" : "plain",
+    "virtualhostaliases" : [ {
+      "id" : "e9541461-52da-4516-8b90-175ad9289496",
+      "name" : "defaultAlias",
+      "type" : "defaultAlias"
+    }, {
+      "id" : "b1878ac3-fea4-431f-90b9-9baab0bcb332",
+      "name" : "hostnameAlias",
+      "type" : "hostnameAlias"
+    }, {
+      "id" : "19ab9489-e591-4050-9ed9-1f9bbd35a7db",
+      "name" : "nameAlias",
+      "type" : "nameAlias"
+    } ]
+  }, {
+    "id" : "05aef30c-893e-4969-949c-dfda152d0de5",
+    "name" : "AMQP.WS",
+    "type" : "AMQP",
+    "authenticationProvider" : "plain",
+    "port" : "5673",
+    "protocols" : [ "AMQP_1_0" ],
+    "transports" : [ "WS" ],
+    "virtualhostaliases" : [ {
+      "id" : "6adcc084-2649-4d01-93a7-c36c5e5a2d8f",
+      "name" : "defaultAlias",
+      "type" : "defaultAlias",
+      "durable" : true
+    }, {
+      "id" : "df38984e-fb68-4053-8cf3-716aa3465af6",
+      "name" : "hostnameAlias",
+      "type" : "hostnameAlias",
+      "durable" : true
+    }, {
+      "id" : "43845df7-b806-4efc-b08b-398376db18a9",
+      "name" : "nameAlias",
+      "type" : "nameAlias",
+      "durable" : true
+    } ]
+  }, {
+    "id" : "928e11c2-7f0a-4c93-b7e9-62df47c4f702",
+    "name" : "HTTP",
+    "port" : "${qpid.http_port}",
+    "authenticationProvider" : "plain",
+    "protocols" : [ "HTTP" ]
+  } ],
+  "virtualhostnodes" : [ {
+    "id" : "2a3e6bee-6232-4687-9a64-60bac26296a3",
+    "name" : "default",
+    "type" : "JSON",
+    "defaultVirtualHostNode" : "true",
+    "virtualHostInitialConfiguration" : "{}",
+    "lastUpdatedBy" : null,
+    "lastUpdatedTime" : 1553615593670,
+    "createdBy" : null,
+    "createdTime" : 1553615593308
+  } ]
+}
