@@ -3,11 +3,9 @@ version: "3"
 services:
   qpid-broker-j:
     image: fea17e86/qpid-broker-j
-    volumes:
-      - .:/myvolume
-      - ~/Workspace/infrastructure/qpid/work:/var/qpid-work
-    environment:
-      INITIAL_CONFIG: /myvolume/amqp-ws-config.json
     ports:
       - "5672-5673:5672-5673"
       - "9001:8080"
+    volumes:
+      - .:/current-dir
+    command: --initial-config-path /current-dir/amqp-ws-config.json

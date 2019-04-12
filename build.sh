@@ -1,1 +1,1 @@
-docker build -t fea17e86/qpid-broker-j:latest -t fea17e86/qpid-broker-j:7.1.1 .
+docker build -t fea17e86/qpid-broker-j:latest -t fea17e86/qpid-broker-j:7.1.2 .

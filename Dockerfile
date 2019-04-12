@@ -1,13 +1,14 @@
 FROM openjdk:8-jre-alpine
 
 # env vars
-ENV IMAGE_VERSION 1
-ENV QPID_VERSION 7.1.1
+ENV IMAGE_VERSION 2
+ENV QPID_VERSION 7.1.2
 ENV QPID_ARCHIVE apache-qpid-broker-j-${QPID_VERSION}-bin.tar.gz
 ENV QPID_DOWNLOAD_URL https://www-eu.apache.org/dist/qpid/broker-j/${QPID_VERSION}/binaries/${QPID_ARCHIVE}
 ENV QPID_INSTALL /usr/local
 ENV INITIAL_CONFIG ${QPID_INSTALL}/initial-config.json
 ENV QPID_HOME ${QPID_INSTALL}/qpid-broker/${QPID_VERSION}
+ENV QPID_SERVER ${QPID_HOME}/bin/qpid-server 
 ENV QPID_WORK /var/qpid-work
 
 # labels
@@ -24,8 +25,9 @@ RUN wget ${QPID_DOWNLOAD_URL}
 RUN tar -xvf ${QPID_ARCHIVE}
 RUN rm ${QPID_ARCHIVE}
 
-# prepare work dir
-COPY initial-config.json ${INITIAL_CONFIG}
+# volumes
+VOLUME ${QPID_INSTALL}
+VOLUME ${QPID_WORK}
 
 # start qpid broker-j
-ENTRYPOINT ${QPID_HOME}/bin/qpid-server --initial-config-path ${INITIAL_CONFIG}
+ENTRYPOINT ["/usr/local/qpid-broker/7.1.2/bin/qpid-server"]
